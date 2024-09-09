@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="d-flex flex-column mb-2">
+        <h1 class="p-1">{{ article.title }}</h1>
+        <p class="p-1">{{ article.release_date }}</p>
+        <p class="p-1">by &#64;{{ authorNick }}</p>
+    </div>
+    <div class="border-top border-bottom pt-2 text-wrap">
+        <p>{{ article.description }}</p>
+    </div>
+    <div class="fluid-container mt-3">
+        <p class="md-text">{{ article.text }}</p>
+    </div>
+</div>

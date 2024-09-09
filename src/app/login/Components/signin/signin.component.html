@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="form-container">
+        <h2 class="text-center">{{ app_name }}</h2>
+        <form>
+            <div class="mb-3">
+                <label for="signInEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email" id="signInEmail" required>
+            </div>
+            <div class="mb-3">
+                <label for="signInPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="password" id="signInPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" (click)="submitForm()">Sign In</button>
+            <p class="text-center mt-3">Don't have an account? <a routerLink="/login/signup">Sign Up</a></p>
+        </form>
+        <ngb-alert [hidden]="!login_error" [type]="alert.type">{{ alert.message }}</ngb-alert>
+    </div>
+</div>

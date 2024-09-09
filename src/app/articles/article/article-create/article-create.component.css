@@ -1,0 +1,12 @@
+textarea{
+    outline: none;
+    resize: none;
+}
+
+textarea::-webkit-scrollbar{
+    width: 0;
+}
+
+.container{
+    max-width: 680px;
+}

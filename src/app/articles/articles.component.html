@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Articles</h2>
+    <div class="d-flex flex-column gap-3 mt-3 mb-5">
+        <div class="list-group" *ngFor="let article of articles">
+            <a [routerLink]="['/articles/g', article.author, article._id]" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ article.title }}</h5>
+                    <small>{{ article.release_date }}</small>
+                </div>
+                <p class="mb-1">{{ article.author }}</p>
+                <small>{{ article.description }}</small>
+            </a>
+        </div>
+    </div>
+</div>
