@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from '../service/article.service';
-import { Article } from '../model/article';
+import { ArticleService } from '../../../core/service/article.service';
+import { Article } from '../../../core/model/article';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

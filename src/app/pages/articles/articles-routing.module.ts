@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticlesComponent } from './articles.component';
 import { AuthorComponent } from './author/author.component';
 import { ArticleComponent } from './article/article.component';
-import { AuthGuard } from '../guards/auth.guard';
+import { AuthGuard } from '../../core/guards/auth.guard';
 import { ArticleCreateComponent } from './article/article-create/article-create.component';
 
 const articlesRoutes: Routes = [

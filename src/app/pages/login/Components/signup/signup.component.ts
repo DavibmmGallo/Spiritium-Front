@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../../service/login.service';
-import { Alert } from '../../service/Alert';
+import { LoginService } from '../../../../core/service/login.service';
+import { Alert } from '../../../../core/model/Alert';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 

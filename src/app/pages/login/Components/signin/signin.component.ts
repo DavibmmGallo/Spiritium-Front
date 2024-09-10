@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Alert } from '../../service/Alert';
+import { Alert } from '../../../../core/model/Alert';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from '../../service/login.service';
+import { LoginService } from '../../../../core/service/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthService } from '../../../shared/service/auth.service';
+import { AuthService } from '../../../../shared/service/auth.service';
 
 @Component({
   selector: 'app-signin',

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ArticleService } from '../../service/article.service';
+import { ArticleService } from '../../../../core/service/article.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Article } from '../../model/article';
-import { AuthService } from '../../../shared/service/auth.service';
+import { Article } from '../../../../core/model/article';
+import { AuthService } from '../../../../shared/service/auth.service';
 
 @Component({
   selector: 'app-article-create',

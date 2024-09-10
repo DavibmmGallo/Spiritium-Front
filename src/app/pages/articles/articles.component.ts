@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from './service/article.service';
+import { ArticleService } from '../../core/service/article.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Article } from './model/article';
+import { Article } from '../../core/model/article';
 
 @Component({
   selector: 'app-articles',
