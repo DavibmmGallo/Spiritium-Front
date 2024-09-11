@@ -1,26 +1,25 @@
 <div class="container">
     <div class="form-container">
         <h2 class="text-center">{{ app_name }}</h2>
-        <form>
+        <form class="register-form" [formGroup]="group" (ngSubmit)="submitForm()">
             <div class="mb-3">
                 <label for="signUpName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="signUpName" name="username" [(ngModel)]="user.name" required>
+                <input type="text" class="form-control" formControlName="name" required>
             </div>
             <div class="mb-3">
                 <label for="signUpEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="signUpEmail" name="email" [(ngModel)]="user.email" required>
+                <input type="email" class="form-control" formControlName="email" required>
             </div>
             <div class="mb-3">
                 <label for="signUpPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="signUpPassword" (input)="setPassword($event)" required/>
+                <input type="password" class="form-control" formControlName="password" required/>
             </div>
             <div class="mb-3">
                 <label for="signUpConfirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="signUpConfirmPassword" (input)="setConfirmPassword($event)" required>
+                <input type="password" class="form-control" formControlName="confirmpassword" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100" (click)="submitForm()">Sign Up</button>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="!group.valid">Sign Up</button>
             <p class="text-center mt-3">Already have an account? <a routerLink="/login/signin">Sign In</a></p>
         </form>
-        <ngb-alert *ngIf="!matching_passwords" [type]="alert.type">{{ alert.message }}</ngb-alert>
     </div>
 </div>

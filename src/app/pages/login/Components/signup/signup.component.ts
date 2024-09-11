@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../../../core/service/login.service';
-import { Alert } from '../../../../core/model/Alert';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -11,44 +11,36 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SignupComponent {
   app_name = "Spiritium"
-  matching_passwords = true
-  user = {
-    name: "",
-    email: "",
-    password: ""
-  };
-  confirmpassword = ""
-  alert: Alert = {"message": "Inserted passwords must match", "type": "warning"}
+  group: FormGroup;
 
   constructor(
     private service: LoginService,
     private router: Router,
-    private route: ActivatedRoute
-  ){}
-
-  setPassword(event: Event): void {
-    const value = String((event.target as HTMLInputElement).value);
-    this.user.password = value;
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ){
+    this.group = this.fb.group({
+      name: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(8)]],
+      confirmpassword: ["", [Validators.required, Validators.minLength(8)]]
+    }, {validators: this.matchpassword});
   }
 
-  setConfirmPassword(event: Event): void {
-    const value = String((event.target as HTMLInputElement).value);
-    this.confirmpassword = value;
+  matchpassword(group: FormGroup){
+      const pass = group.controls['password'].value;
+      const confirmPass = group.controls['confirmpassword'].value;
+      return pass === confirmPass ? null : { notEqual: true };
   }
 
   submitForm(): void{
-    if(this.user.password != this.confirmpassword){
-      this.matching_passwords = false
-    }else{
-      this.service.create(this.user).subscribe(
-        response => {
-          this.alert = { type: 'success', message: response.toString() };
-          this.router.navigate(['../signin'], { relativeTo: this.route });
-        },
-        (error: HttpErrorResponse) => {
-          this.alert = { type: 'danger', message: error.message };
-        }
-      );
-    }
+    this.service.create(this.group.value).subscribe(
+      () => {
+        this.router.navigate(['../signin'], { relativeTo: this.route });
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error.message);
+      }
+    );
   }
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Alert } from '../../../../core/model/Alert';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../../../core/service/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,7 +15,6 @@ export class SigninComponent {
   email = ''
   password = ''
   login_error = false
-  alert: Alert = {"message": "", "type": ""}
 
   constructor(
     private service: LoginService,
@@ -33,7 +31,7 @@ export class SigninComponent {
       },
       (error: HttpErrorResponse) => {
         this.login_error = true
-        this.alert = { type: 'warning', message: error.status.toString() == '401' ? `The password for ${this.email} is incorrect.`: error.message};
+        console.error(error.message);
       }
     );
   }
