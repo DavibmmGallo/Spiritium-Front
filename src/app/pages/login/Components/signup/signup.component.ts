@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../../../core/service/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent {
   app_name = "Spiritium"
-  group: FormGroup;
+  group: FormGroup = new FormGroup({});
 
   constructor(
     private service: LoginService,
@@ -23,13 +23,16 @@ export class SignupComponent {
       name: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(8)]],
-      confirmpassword: ["", [Validators.required, Validators.minLength(8)]]
-    }, {validators: this.matchpassword});
+      confirmpassword: ["", [Validators.required, Validators.minLength(8), this.matchpassword]]
+    });
   }
 
-  matchpassword(group: FormGroup){
-      const pass = group.controls['password'].value;
-      const confirmPass = group.controls['confirmpassword'].value;
+  matchpassword(control: FormControl): ValidationErrors | null {
+      if (!control.parent)
+        return null;
+
+      const pass = control.parent.value.password;
+      const confirmPass = control.value;
       return pass === confirmPass ? null : { notEqual: true };
   }
 

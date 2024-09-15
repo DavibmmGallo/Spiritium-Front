@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { ArticlesComponent } from './articles.component';
@@ -19,6 +19,7 @@ import { ArticleCreateComponent } from './article/article-create/article-create.
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ArticlesRoutingModule
   ]
 })

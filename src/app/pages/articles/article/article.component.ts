@@ -12,8 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ArticleComponent implements OnInit{
   title_id = ''
   authorNick = ''
-  image = 'https://picsum.photos/id/965/900/500'
-  article: Article = {_id: '', author: '', description: '', release_date: new Date(), text: '', title: ''}
+  article: Article = {_id: '', author: '', description: '', release_date: new Date(), text: [], title: ''}
 
   constructor(
     private route: ActivatedRoute,

@@ -4,5 +4,8 @@ export interface Article{
     author: string
     description: string
     release_date: Date
-    text: string
+    text: {
+        content: string | boolean
+        type: string
+    }[]
 }

@@ -7,7 +7,20 @@
     <div class="border-top border-bottom pt-2 text-wrap">
         <p>{{ article.description }}</p>
     </div>
-    <div class="fluid-container mt-3">
-        <p class="md-text">{{ article.text }}</p>
-    </div>
+    <ng-container *ngFor="let t of article.text;">
+        <div class="fluid-container mt-3" [ngSwitch]="t.type">
+            <div *ngSwitchCase="'text'">
+                <p class="md-text text-break">{{ t.content }}</p>
+            </div>
+            <div *ngSwitchCase="'url'">
+                <a class="md-text" [href]="t.content">{{ t.content }}</a>
+            </div>
+            <div *ngSwitchCase="'checkbox'">
+                <input class="form-check-input mt-0" type="checkbox" id="checkbox1" name="checkbox1"/>
+            </div>
+            <div *ngSwitchDefault>
+                <img  alt="image" [src]="t.content">
+            </div>
+        </div>
+    </ng-container>
 </div>
