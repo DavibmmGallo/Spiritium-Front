@@ -19,6 +19,7 @@ enum ContentType{
 })
 export class ArticleCreateComponent implements OnInit{
   form: FormGroup = new FormGroup({});
+  selectedimage: string | ArrayBuffer | null = null
 
   constructor(
     private service: ArticleService,
@@ -61,6 +62,26 @@ export class ArticleCreateComponent implements OnInit{
     const type = control.value;
     
     return Object.values(ContentType).includes(type) ? null : { notIncluded: true };
+  }
+
+  onFileSelected(event: any, index: number){
+    if (!event.target.files)
+      return
+
+    const file: File = event.target.files[0];
+
+    if (file) {      
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.selectedimage = reader.result;
+        if (this.selectedimage){
+          const base64Image = this.selectedimage.toString().split(',')[1];
+          this.Text.at(index).value.content = "data:image/png;base64," + base64Image;
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
  
   submitForm(): void{

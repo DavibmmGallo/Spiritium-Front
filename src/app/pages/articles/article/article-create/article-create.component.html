@@ -17,7 +17,7 @@
                             <option *ngFor="let t of ContentEnumKeys;" [value]="t">{{ t }}</option>
                         </select>
                     </div>
-                    <input formControlName="content" [type]="c.value.type"/>
+                    <input formControlName="content" (change)="onFileSelected($event, i)" [type]="c.value.type"/>
                 </div>
             </ng-container>
             <button class="btn btn-light" (click)="addContent()">+</button>
